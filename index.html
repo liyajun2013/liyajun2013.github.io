@@ -172,7 +172,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -182,7 +182,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -235,6 +235,105 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/29/沉浸式（Translucent）状态栏/" itemprop="url">
+                  沉浸式（Translucent）状态栏
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-08-29T15:20:26+08:00" content="2016-08-29">
+              2016-08-29
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>沉浸式状态栏在4.4（api=19）一下没法实现，在4.4~4.x上的显示有一点渐变的效果，在5.x(api=21)以上可以实现一体色。不过在4.4上和5.x以上的实现方式不同。<a href="https://github.com/laobie/StatusBarUtil" target="_blank" rel="external">附上git上为我们实现的很完美的一个工具</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">StatusBarUtil.setColor(this, getResources().getColor(R.color.colorPrimaryDark),0);</div></pre></td></tr></table></figure></p>
+<p>代码中主要设置上面这句函数，要在setContentView()后面，在BaseActivity里写可以写到onResume()里面</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)</div></pre></td></tr></table></figure>
+<p>4.4上设置可以使得状态栏透明，再添加一块自己的view在标题栏后面，状态栏透明后就能显示自定义的view。最后设置根布局setFitsSystemWindows(true)（使根布局从状态栏下面开始）和setClipToPadding(true)（listview滑动的时候不会滑到状态栏后面）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);</div><div class="line">activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);</div><div class="line">activity.getWindow().setStatusBarColor(Color.TRANSPARENT);</div></pre></td></tr></table></figure>
+<p>5.x上比较简单，设置上面3句函数就可以了，不过要注意的是6.0上状态栏有灰条盖住状态栏颜色，使得看上去颜色变深，不过StatusBarUtil这个工具里面提供我们alpha值得设置，设置为0就可以显示统一的颜色。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/05/mvp使用理解/" itemprop="url">
                   mvp使用理解
                 </a>
@@ -248,7 +347,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-08-05T15:51:01+08:00" content="2016-08-05">
               2016-08-05
             </time>
@@ -345,7 +444,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-08-02T17:32:16+08:00" content="2016-08-02">
               2016-08-02
             </time>
@@ -454,8 +553,8 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">2</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">posts</span>
             </a>
           </div>
 
@@ -502,7 +601,7 @@
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">

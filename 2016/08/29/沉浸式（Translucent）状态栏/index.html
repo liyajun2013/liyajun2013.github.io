@@ -84,19 +84,19 @@
 
 
 
-<meta name="description" content="最近新做了一个项目，尝试了mvp（model，view，presenter）框架。以前一直都使用mvc（model，view，control）的框架开发，activity一直做为上帝类一般的存在，导致这个类越来越臃肿。比较下了mvc和mvp的区别：
-优势：123降低了耦合度，实现model和view的分离，减少activity的压力。presenter可以复用，一个presenter可以用于多个v">
+<meta name="description" content="沉浸式状态栏在4.4（api=19）一下没法实现，在4.4~4.x上的显示有一点渐变的效果，在5.x(api=21)以上可以实现一体色。不过在4.4上和5.x以上的实现方式不同。附上git上为我们实现的很完美的一个工具1StatusBarUtil.setColor(this, getResources().getColor(R.color.colorPrimaryDark),0);
+代码中主要设置">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mvp使用理解">
-<meta property="og:url" content="http://yoursite.com/2016/08/05/mvp使用理解/index.html">
+<meta property="og:title" content="沉浸式（Translucent）状态栏">
+<meta property="og:url" content="http://yoursite.com/2016/08/29/沉浸式（Translucent）状态栏/index.html">
 <meta property="og:site_name" content="liyajun2013">
-<meta property="og:description" content="最近新做了一个项目，尝试了mvp（model，view，presenter）框架。以前一直都使用mvc（model，view，control）的框架开发，activity一直做为上帝类一般的存在，导致这个类越来越臃肿。比较下了mvc和mvp的区别：
-优势：123降低了耦合度，实现model和view的分离，减少activity的压力。presenter可以复用，一个presenter可以用于多个v">
-<meta property="og:updated_time" content="2016-08-05T08:40:31.000Z">
+<meta property="og:description" content="沉浸式状态栏在4.4（api=19）一下没法实现，在4.4~4.x上的显示有一点渐变的效果，在5.x(api=21)以上可以实现一体色。不过在4.4上和5.x以上的实现方式不同。附上git上为我们实现的很完美的一个工具1StatusBarUtil.setColor(this, getResources().getColor(R.color.colorPrimaryDark),0);
+代码中主要设置">
+<meta property="og:updated_time" content="2016-08-29T07:52:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mvp使用理解">
-<meta name="twitter:description" content="最近新做了一个项目，尝试了mvp（model，view，presenter）框架。以前一直都使用mvc（model，view，control）的框架开发，activity一直做为上帝类一般的存在，导致这个类越来越臃肿。比较下了mvc和mvp的区别：
-优势：123降低了耦合度，实现model和view的分离，减少activity的压力。presenter可以复用，一个presenter可以用于多个v">
+<meta name="twitter:title" content="沉浸式（Translucent）状态栏">
+<meta name="twitter:description" content="沉浸式状态栏在4.4（api=19）一下没法实现，在4.4~4.x上的显示有一点渐变的效果，在5.x(api=21)以上可以实现一体色。不过在4.4上和5.x以上的实现方式不同。附上git上为我们实现的很完美的一个工具1StatusBarUtil.setColor(this, getResources().getColor(R.color.colorPrimaryDark),0);
+代码中主要设置">
 
 
 
@@ -117,9 +117,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/08/05/mvp使用理解/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/08/29/沉浸式（Translucent）状态栏/"/>
 
-  <title> mvp使用理解 | liyajun2013 </title>
+  <title> 沉浸式（Translucent）状态栏 | liyajun2013 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -239,7 +239,7 @@
             
             
               
-                mvp使用理解
+                沉浸式（Translucent）状态栏
               
             
           </h1>
@@ -251,8 +251,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-08-05T15:51:01+08:00" content="2016-08-05">
-              2016-08-05
+            <time itemprop="dateCreated" datetime="2016-08-29T15:20:26+08:00" content="2016-08-29">
+              2016-08-29
             </time>
           </span>
 
@@ -279,10 +279,12 @@
       
 
       
-        <p>最近新做了一个项目，尝试了mvp（model，view，presenter）框架。以前一直都使用mvc（model，view，control）的框架开发，activity一直做为上帝类一般的存在，导致这个类越来越臃肿。<br>比较下了mvc和mvp的区别：</p>
-<h3 id="优势："><a href="#优势：" class="headerlink" title="优势："></a>优势：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">降低了耦合度，实现model和view的分离，减少activity的压力。</div><div class="line">presenter可以复用，一个presenter可以用于多个view。</div><div class="line">view可以进行组件化，从业务场景中脱离出来，可以说view可以做到对业务完全无知，只需要提供一系列的接口给presenter调用即可。</div></pre></td></tr></table></figure>
-<h3 id="不足之处："><a href="#不足之处：" class="headerlink" title="不足之处："></a>不足之处：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">接口和类的暴涨,将Activity中除V之外的繁杂操作搬到P之后依然臃肿不堪。</div><div class="line">如果presenter过多地渲染了视图，往往会使得它与特定的视图的联系过于紧密。一旦视图需要变更，那么presenter也需要变更了</div></pre></td></tr></table></figure>
-<p>所以感觉MVP从来都不是救命稻草，只能锦上添花，不能雪中送炭。<a href="https://github.com/north2014/T-MVP" target="_blank" rel="external">附上github上一个比较不错的mvp写的demo</a></p>
+        <p>沉浸式状态栏在4.4（api=19）一下没法实现，在4.4~4.x上的显示有一点渐变的效果，在5.x(api=21)以上可以实现一体色。不过在4.4上和5.x以上的实现方式不同。<a href="https://github.com/laobie/StatusBarUtil" target="_blank" rel="external">附上git上为我们实现的很完美的一个工具</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">StatusBarUtil.setColor(this, getResources().getColor(R.color.colorPrimaryDark),0);</div></pre></td></tr></table></figure></p>
+<p>代码中主要设置上面这句函数，要在setContentView()后面，在BaseActivity里写可以写到onResume()里面</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)</div></pre></td></tr></table></figure>
+<p>4.4上设置可以使得状态栏透明，再添加一块自己的view在标题栏后面，状态栏透明后就能显示自定义的view。最后设置根布局setFitsSystemWindows(true)（使根布局从状态栏下面开始）和setClipToPadding(true)（listview滑动的时候不会滑到状态栏后面）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);</div><div class="line">activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);</div><div class="line">activity.getWindow().setStatusBarColor(Color.TRANSPARENT);</div></pre></td></tr></table></figure>
+<p>5.x上比较简单，设置上面3句函数就可以了，不过要注意的是6.0上状态栏有灰条盖住状态栏颜色，使得看上去颜色变深，不过StatusBarUtil这个工具里面提供我们alpha值得设置，设置为0就可以显示统一的颜色。</p>
 
       
     </div>
@@ -308,17 +310,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/02/hello-world/" rel="next" title="Hello hexo">
-                <i class="fa fa-chevron-left"></i> Hello hexo
+              <a href="/2016/08/05/mvp使用理解/" rel="next" title="mvp使用理解">
+                <i class="fa fa-chevron-left"></i> mvp使用理解
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/08/29/沉浸式（Translucent）状态栏/" rel="prev" title="沉浸式（Translucent）状态栏">
-                沉浸式（Translucent）状态栏 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -418,7 +416,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#优势："><span class="nav-number">1.</span> <span class="nav-text">优势：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不足之处："><span class="nav-number">2.</span> <span class="nav-text">不足之处：</span></a></li></ol></div>
+              <p class="post-toc-empty">This post does not have a Table of Contents</p>
             
           </div>
         </section>
